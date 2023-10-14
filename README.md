@@ -1,7 +1,7 @@
 
 # HPA based on metrics
 
-#### Horizontal pod autoscaler based on external metrics, In this example we'll create a POC for two application each of them has it's own hpa resource and then we have to test the scale in and out.
+**Horizontal pod autoscaler based on external metrics, In this example we'll create a POC for two application each of them has it's own hpa resource and then we have to test the scale in and out.**
 You can find a lot of GCP exposed metrics [here](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-loadbalancing).
 
 
@@ -61,4 +61,5 @@ ddosify -t <second_domain> -n 1000  -T 1 -m GET
  - [Medium article](https://medium.com/@matteo.candido/kubernetes-hpa-autoscaling-with-external-metrics-b225289b9206)
  - [GCP Documentation](https://cloud.google.com/kubernetes-engine/docs/tutorials/autoscaling-metrics#pubsub_8)
  - [HPA behavior](https://github.com/kubernetes/enhancements/blob/master/keps/sig-autoscaling/853-configurable-hpa-scale-velocity/README.md)
+ 
 ![Logo](https://www.giantswarm.io/hubfs/blog_images/hero/vertical-autoscaling-blog-post-1500x700.jpg)
