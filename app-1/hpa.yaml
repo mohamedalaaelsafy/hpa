@@ -1,0 +1,47 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0 # Perform a scale-out when needed
+      policies:
+      - type: Percent
+        value: 900 
+        periodSeconds: 15 # Up to nine times the current number of replicas can be added every 15 seconds.
+    # Don't Add this values in the production environment, this only for testing 
+    scaleDown:
+      stabilizationWindowSeconds: 0 
+      policies:
+      - type: Percent
+        value: 900
+        periodSeconds: 15 
+    # You can add this values in the production environment or remove scaleDown section and leave it by default
+    # scaleDown:
+    #   stabilizationWindowSeconds: 300 # When a scale-in is needed, observe for five minutes first. If it is still needed, perform the scale-in.
+    #   policies:
+    #   - type: Pods
+    #     value: 1
+    #     periodSeconds: 600 # Only one Pod can be released every ten minutes.
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: External
+    external:
+      metric:
+        name: loadbalancing.googleapis.com|https|backend_request_count
+        selector:
+          matchLabels:
+            resource.labels.url_map_name: hpa-alb
+            resource.labels.backend_target_name: hpa-backend 
+      target:
+        type: AverageValue
+        averageValue: "3000m" # devided by 1000 to get the request count   
+
+#FYI: Number of desired replicas = currentReplicas*(desired metric / current metric)
