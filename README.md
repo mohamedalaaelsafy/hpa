@@ -18,7 +18,7 @@ You can find a lot of GCP exposed metrics [here](https://cloud.google.com/monito
 
 Supposed that you have GKE cluster and external application loadbalancer on gcp project where the backends configured to routues its traffic to zonal network endpoint (NEG) which will created by the service kubernetes resource after deploying or application in the below steps.
 
-**Note:** If you don't create a loadbalncer wait till you create your application in the below steps and then create the application loadbalancer to route the trafic to the newlycreated neg. 
+**Note:** If you don't create a loadbalancer wait till you create your application in the below steps and then create the application loadbalancer to route the trafic to the newlycreated neg. 
 
 
 ## Installation
@@ -61,5 +61,5 @@ ddosify -t <second_domain> -n 1000  -T 1 -m GET
  - [Medium article](https://medium.com/@matteo.candido/kubernetes-hpa-autoscaling-with-external-metrics-b225289b9206)
  - [GCP Documentation](https://cloud.google.com/kubernetes-engine/docs/tutorials/autoscaling-metrics#pubsub_8)
  - [HPA behavior](https://github.com/kubernetes/enhancements/blob/master/keps/sig-autoscaling/853-configurable-hpa-scale-velocity/README.md)
- 
+
 ![Logo](https://www.giantswarm.io/hubfs/blog_images/hero/vertical-autoscaling-blog-post-1500x700.jpg)
